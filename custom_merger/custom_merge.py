@@ -12,6 +12,9 @@ class Script(ScriptBase):
       factory = importlib.import_module('xfel.merging.application.'+step+'.factory')
       workers.extend(factory.factory.from_parameters(self.params))
 
+    from rsrh import rsrh
+    workers.append(rsrh(self.params))
+
     # Perform phil validation up front
     for worker in workers:
       worker.validate()
